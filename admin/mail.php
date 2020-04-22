@@ -13,7 +13,10 @@ require '../login/misc/pagehead.php';
 </head>
 <body>
   <?php require '../login/misc/pullnav.php'; ?>
+<div class="wrapper">
   <div class="container-fluid">
+  <div class="card mb-3">
+  <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
         <h3>Manage Roles</h3>
@@ -31,8 +34,13 @@ require '../login/misc/pagehead.php';
       </div>
     </div>
   </div>
+ </div>
+</div>
+</div>
 
   <script type="application/javascript" src="js/maillog.js"></script>
+
+<?php include "../footer.php"; ?>
 
 </body>
 </html>

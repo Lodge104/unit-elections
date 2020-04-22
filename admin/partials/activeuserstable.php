@@ -8,6 +8,6 @@
   </thead>
 </table>
 
-<?php include "usermanagementmodals.html";?>
+<?php include "../admin/partials/usermanagementmodals.html";?>
 
-<script type="application/javascript" src="js/usermanagement.js"></script>
+<script type="application/javascript" src="../admin/js/usermanagement.js"></script>

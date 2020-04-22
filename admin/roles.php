@@ -12,12 +12,15 @@ $x = 0;
 <script type="text/javascript" src="../login/js/loadingoverlay.min.js"></script>
 <script type="text/javascript" src="../login/js/multiselect.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../login/js/DataTables/datatables.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/rolemanagement.css"/>
+<link rel="stylesheet" type="text/css" href="../admin/css/rolemanagement.css"/>
 
 </head>
 <body>
   <?php require '../login/misc/pullnav.php'; ?>
+<div class="wrapper">
   <div class="container-fluid">
+  <div class="card mb-3">
+  <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
         <h3>Manage Roles</h3>
@@ -35,6 +38,9 @@ $x = 0;
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
 
   <!-- New Role Modal -->
   <div class="modal fade" id="newRole">
@@ -87,9 +93,11 @@ $x = 0;
     </div>
   </div>
 
-<?php include "partials/rolemanagementmodals.html";?>
+<?php include "../admin/partials/rolemanagementmodals.html";?>
 
-<script type="application/javascript" src="js/rolemanagement.js"></script>
+<script type="application/javascript" src="../admin/js/rolemanagement.js"></script>
+
+<?php include "../footer.php"; ?>
 
 </body>
 </html>

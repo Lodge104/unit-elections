@@ -3,7 +3,7 @@
 function userInfoPull(id, elem) {
   $.ajax({
     type: "POST",
-    url: "ajax/user_getinfo.php",
+    url: "../admin/ajax/user_getinfo.php",
     data: { "user_id": id, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
     async: false,
     beforeSend: function(){
@@ -65,7 +65,7 @@ function editPermission(id){
 
   $.ajax({
     type: "POST",
-    url: "ajax/permission_getdata.php",
+    url: "../admin/ajax/permission_getdata.php",
     data: { "permission_id": id, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
     beforeSend: function(){
       $.LoadingOverlay('show', {
@@ -97,7 +97,7 @@ function permissionRolesList(id) {
 
   $.ajax({
     type: "POST",
-    url: "ajax/permission_getroles.php",
+    url: "../admin/ajax/permission_getroles.php",
     data: { "permission_id": id, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
     beforeSend: function(){
       $.LoadingOverlay('show', {
@@ -159,7 +159,7 @@ $('#saveRoles').click(function(){
 
     $.ajax({
       type: "POST",
-      url: "ajax/permission_updateroles.php",
+      url: "../admin/ajax/permission_updateroles.php",
       processData: false,
       contentType: false,
       data: sendData,
@@ -233,7 +233,7 @@ $(document).ready(function() {
     } ],
     paging: true,
     ajax: {
-      url: "ajax/permissions_getall.php?csrf_token="+ $('meta[name="csrf_token"]').attr("value"),
+      url: "../admin/ajax/permissions_getall.php?csrf_token="+ $('meta[name="csrf_token"]').attr("value"),
       error: function (xhr, error, thrown) {
         alert( xhr.responseJSON.Error );
       }
@@ -287,7 +287,7 @@ function deletePermission(id, btn_id){
   var idJSON = "[" + JSON.stringify(id) + "]";
   $.ajax({
     type: "POST",
-    url: "ajax/permissions_delete.php",
+    url: "../admin/ajax/permissions_delete.php",
     data: {"ids": idJSON, "csrf_token": $('meta[name="csrf_token"]').attr("value")},
     async: false,
     success: function(resp){
@@ -309,7 +309,7 @@ $("#newPermissionForm").submit(function(event){
     var permissionCategory = $("#new_PermissionCategory").val();
 
     $.ajax({
-      url: "ajax/permissions_add.php",
+      url: "../admin/ajax/permissions_add.php",
       type: "POST",
       data: { "permissionName": permissionName, "permissionDescription": permissionDescription, "permissionCategory": permissionCategory, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
       beforeSend: function(){
@@ -343,7 +343,7 @@ $("#newPermissionForm").submit(function(event){
     var permissionCategory = $("#edit_PermissionCategory").val();
 
     $.ajax({
-      url: "ajax/permission_update.php",
+      url: "../admin/ajax/permission_update.php",
       type: "POST",
       data: { "permissionId": permissionId, "permissionName": permissionName, "permissionDescription": permissionDescription, "permissionCategory": permissionCategory, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
       beforeSend: function(){

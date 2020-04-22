@@ -7,6 +7,6 @@
   </thead>
 </table>
 
-<?php include "usermanagementmodals.html";?>
+<?php include "../admin/partials/usermanagementmodals.html";?>
 
-<script type="application/javascript" src="js/userverification.js"></script>
+<script type="application/javascript" src="../admin/js/userverification.js"></script>

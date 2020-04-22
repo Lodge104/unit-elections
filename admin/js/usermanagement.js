@@ -3,7 +3,7 @@
 function userInfoPull(id, elem) {
   $.ajax({
     type: "POST",
-    url: "ajax/user_getinfo.php",
+    url: "../admin/ajax/user_getinfo.php",
     data: { "user_id": id, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
     async: false,
     success: function(user_info){
@@ -61,7 +61,7 @@ function userRolesList(id) {
 
   $.ajax({
     type: "POST",
-    url: "ajax/user_getroles.php",
+    url: "../admin/ajax/user_getroles.php",
     data: { "user_id": id, "csrf_token": $('meta[name="csrf_token"]').attr("value") },
     async: false,
     beforeSend: function(){
@@ -107,7 +107,7 @@ $('#saveRoles').click(function(){
 
     $.ajax({
       type: "POST",
-      url: "ajax/user_updateroles.php",
+      url: "../admin/ajax/user_updateroles.php",
       processData: false,
       contentType: false,
       data: sendData,
@@ -164,7 +164,7 @@ function banUser(id, btn_id, ban_hours, ban_reason){
   if (ban_hours !== 0){
     $.ajax({
       type: "POST",
-      url: "ajax/users_ban.php",
+      url: "../admin/ajax/users_ban.php",
       data: { "uid": uidJSON, "ban_hours": ban_hours, "ban_reason": ban_reason,
               "csrf_token": $('meta[name="csrf_token"]').attr("value")},
       async: false,
@@ -238,7 +238,7 @@ $(document).ready(function() {
     paging: true,
     serverSide: true,
     ajax: {
-      url:"ajax/users_getallactive.php?csrf_token="+ $('meta[name="csrf_token"]').attr("value"),
+      url:"../admin/ajax/users_getallactive.php?csrf_token="+ $('meta[name="csrf_token"]').attr("value"),
       error: function (xhr, error, thrown) {
         alert( xhr.responseJSON.Error );
       }
@@ -301,7 +301,7 @@ function deleteUser(id, btn_id){
   var idJSON = "[" + JSON.stringify(id) + "]";
   $.ajax({
     type: "POST",
-    url: "ajax/users_delete.php",
+    url: "../admin/ajax/users_delete.php",
     data: {"ids": idJSON, "csrf_token": $('meta[name="csrf_token"]').attr("value")},
     async: false,
     success: function(resp){

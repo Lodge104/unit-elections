@@ -16,12 +16,15 @@ if (isset($_GET['f'])) {
 <script type="text/javascript" src="../login/js/DataTables/datatables.min.js"></script>
 <script type="text/javascript" src="../login/js/loadingoverlay.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../login/js/DataTables/datatables.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/usermanagement.css"/>
+<link rel="stylesheet" type="text/css" href="../admin/css/usermanagement.css"/>
 
 </head>
 <body>
   <?php require '../login/misc/pullnav.php'; ?>
+<div class="wrapper">
   <div class="container-fluid">
+  <div class="card mb-3">
+  <div class="card-body">
 
 
     <ul class="nav nav-tabs">
@@ -47,13 +50,13 @@ if (isset($_GET['f'])) {
       <?php
         switch ($userfunction) {
           case "manageactive":
-            include "partials/activeuserstable.php";
+            include "../admin/partials/activeuserstable.php";
             break;
           case "verification":
-            include "partials/verifydeleteusers.php";
+            include "../admin/partials/verifydeleteusers.php";
             break;
           default:
-            include "partials/activeuserstable.php";
+            include "../admin/partials/activeuserstable.php";
             break;
         }
       ?>
@@ -63,7 +66,9 @@ if (isset($_GET['f'])) {
       </div>
     </div>
   </div>
+	</div>
+  </div>
 
-
+<?php include "../footer.php"; ?>
 </body>
 </html>

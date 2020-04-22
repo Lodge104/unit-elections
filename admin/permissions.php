@@ -13,12 +13,15 @@ $x = 0;
 <script type="text/javascript" src="../login/js/loadingoverlay.min.js"></script>
 <script type="text/javascript" src="../login/js/multiselect.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../login/js/DataTables/datatables.min.css"/>
-<link rel="stylesheet" type="text/css" href="css/permissionmanagement.css"/>
+<link rel="stylesheet" type="text/css" href="../admin/css/permissionmanagement.css"/>
 
 </head>
 <body>
   <?php require '../login/misc/pullnav.php'; ?>
+<div class="wrapper">
   <div class="container-fluid">
+  <div class="card mb-3">
+  <div class="card-body">
     <div class="row">
       <div class="col-sm-12">
         <h3>Manage Permissions</h3>
@@ -36,6 +39,9 @@ $x = 0;
       </div>
     </div>
   </div>
+ </div>
+</div>
+</div>
 
 
   <!-- New Permission Modal -->
@@ -96,9 +102,11 @@ $x = 0;
   </div>
 
 
-<?php include "partials/permissionmanagementmodals.html";?>
+<?php include "../../admin/partials/permissionmanagementmodals.html"; ?>
 
-<script type="application/javascript" src="js/permissionmanagement.js"></script>
+<script type="application/javascript" src="../../admin/js/permissionmanagement.js"></script>
+
+<?php include "../footer.php"; ?>
 
 </body>
 </html>

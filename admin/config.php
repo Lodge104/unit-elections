@@ -15,7 +15,10 @@ $settingsArr = $conf->pullAllSettings(new PHPLogin\AuthorizationHandler);
 </head>
 <body>
 <?php require '../login/misc/pullnav.php'; ?>
-<div class="container">
+<div class="wrapper">
+<div class="container-fluid">
+<div class="card mb-3">
+<div class="card-body">
 <form id="settingsForm" action="#" enctype="multipart/form-data">
 <div class="form-group" id="configForm">
 <div class="row">
@@ -162,6 +165,10 @@ if ($settingsArr['status'] === true) {
 <button class='btn btn-info' id='testemail'>Test Email Config</button>
 
 </div>
+</div>
+</div>
+</div>
+</div>
 <br><br><br>
 <script>
 $(function () {
@@ -169,6 +176,7 @@ $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
 </script>
+<?php include "../footer.php"; ?>
 </body>
 
 <?php
