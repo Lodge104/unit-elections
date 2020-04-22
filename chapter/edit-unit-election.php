@@ -123,18 +123,9 @@ if ($conn->connect_error) {
                         </select>
                       </div>
                     </div>
-					  <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="open" class="required">Voting Open?</label>
-                        <select id="open" name="open" class="custom-select" required>
-                          <option value="No" <?php echo ($getUnitElections['open'] == 'No' ? 'selected' : ''); ?> >No</option>
-                          <option value="Yes" <?php echo ($getUnitElections['open'] == 'Yes' ? 'selected' : ''); ?> >Yes</option>
-						  </select>
-					  </div>
-                    </div>
                   </div>
                   <hr></hr>
-                  <h6 class="card-title">Unit Leader Information</h6>
+                  <h4 class="card-title">Unit Leader Information</h4>
                   <div class="form-row">
                     <div class="col-md-3">
                       <div class="form-group">
@@ -175,6 +166,18 @@ if ($conn->connect_error) {
                       </div>
                     </div>
                   </div>
+				  <hr></hr>
+				  <div class="form-row">
+					 <div class="col-md-4">
+                      <div class="form-group">
+                        <label for="open" class="required">Voting Open?</label>
+                        <select id="open" name="open" class="custom-select" required>
+                          <option value="No" <?php echo ($getUnitElections['open'] == 'No' ? 'selected' : ''); ?> >No</option>
+                          <option value="Yes" <?php echo ($getUnitElections['open'] == 'Yes' ? 'selected' : ''); ?> >Yes</option>
+						  </select>
+					  </div>
+                    </div>
+				  </div>
                   <a href="index.php" class="btn btn-secondary">Cancel</a>
                   <input type="submit" class="btn btn-primary" value="Save">
                 </form>

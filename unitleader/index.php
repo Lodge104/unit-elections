@@ -55,7 +55,7 @@ header("Pragma: no-cache");
 			  <div class="card mb-3">
                   <div class="card-body">
 				  	<h3 class="card-title d-inline-flex">Insturctions</h3>
-					  <p>This is your dashboard for your unit election. Please start by making sure all the information in the first box below is accurate and up to date. If not, please click the edit button to correct it.<br><br> Secondly, please add your all eligible scouts who will be on the ballot in the second box. Any scout not included by the start of the election will have to wait until the next election the following year. After the election, you can view the results with a link that will appear in the box below.<br><br>The status of the unit election will remain <span class="badge badge-danger">In Progress</span> until the results are imported into our membership database. Once the status says <span class="badge badge-success">Completed</span>, your scouts will be able to register for their ordeal.</p>
+					  <p>This is the dashboard for your unit election. Please start by making sure all the information in the first box is accurate and up to date. If not, please click the edit button to correct it.<br><br> Secondly, please add all eligible scouts who will be on the ballot in the appropriate box. Please reference the critira information to determine which scouts are eligible. Any scout not included by the start of the election will have to wait until the next year. After the election, you can view the results with a link that will appear on your dashboard.<br><br>It is up to you to determine when you would like to announce the results. You may announce them directly after the election or wait until another time. Please speak with the election team as many chapters offer district wide call-out ceremonies. Additionally, the election team has information to give to newly elected candidates regardless of when the results are announced, so please retrieve the information from them.<br><br>The status of the unit election will remain <span class="badge badge-danger">In Progress</span> until the results are imported into our membership database. Once the status says <span class="badge badge-success">Completed</span>, your scouts will be able to register for their ordeal.</p>
 				  </div>
 		 	  </div>
               <?php
@@ -74,8 +74,8 @@ header("Pragma: no-cache");
                       <table class="table">
                         <thead>
                           <tr>
+                            <th scope="col">Unit Type</th>
                             <th scope="col">Unit Number</th>
-                            <th scope="col">Unit Community</th>
                             <th scope="col"># of Registered Youth</th>
                             <th scope="col">Chapter</th>
                             <th scope="col">Date of Election</th>
@@ -113,7 +113,7 @@ header("Pragma: no-cache");
 
                                 $date = $dt->format("Y-m-d");
                                 $hour = $dt->format("H");
-                                if ((strtotime($getUnitElections['dateOfElection']) < strtotime($date)) || ($getUnitElections['dateOfElection'] == $date && $hour >= 12)) { ?>
+                                if ((strtotime($getUnitElections['dateOfElection']) < strtotime($date)) || ($getUnitElections['dateOfElection'] == $date && $hour >= 14)) { ?>
                                   <a href="results.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>">view</a>
                                 <?php } else { ?>
                                   <span class="text-muted">Not Available</span>

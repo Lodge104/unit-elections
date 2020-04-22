@@ -71,16 +71,16 @@ if ($conn->connect_error) {
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="unitCommunity">Unit Community</label>
+                        <label for="unitCommunity">Unit Type</label>
                         <input id="unitCommunity" name="unitCommunity" type="text" class="form-control" value="<?php echo $getUnitElections['unitCommunity']; ?>" disabled>
                       </div>
                     </div>
                   </div>
                   <div class="form-row">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <div class="form-group">
-                        <label for="numRegisteredYouth"># of Registered Youth</label>
-                        <input id="numRegisteredYouth" name="numRegisteredYouth" type="number" class="form-control" value="<?php echo $getUnitElections['numRegisteredYouth']; ?>">
+                        <label for="numRegisteredYouth" class="required"># of Registered Youth</label>
+                        <input id="numRegisteredYouth" name="numRegisteredYouth" type="number" class="form-control" value="<?php echo $getUnitElections['numRegisteredYouth']; ?>" required>
                       </div>
                     </div>
                     <div class="col-md-3">
@@ -92,14 +92,7 @@ if ($conn->connect_error) {
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="chapter">Chapter</label>
-                        <select id="chapter" name="chapter" class="custom-select" disabled>
-                          <option></option>
-                          <option value="TestChapter" <?php echo ($getUnitElections['chapter'] == 'TestChapter' ? 'selected' : ''); ?> >TestChapter</option>
-                          <option value="annawon" <?php echo ($getUnitElections['chapter'] == 'Annawon' ? 'selected' : ''); ?> >Annawon</option>
-                          <option value="blackstone" <?php echo ($getUnitElections['chapter'] == 'Blackstone' ? 'selected' : ''); ?> >Blackstone</option>
-                          <option value="metacomet" <?php echo ($getUnitElections['chapter'] == 'Metacomet' ? 'selected' : ''); ?> >Metacomet</option>
-                          <option value="wampanoag" <?php echo ($getUnitElections['chapter'] == 'Wampanoag' ? 'selected' : ''); ?> >Wampanoag</option>
-                        </select>
+                        <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $getUnitElections['chapter']; ?>" disabled>
                       </div>
                     </div>
                   </div>
