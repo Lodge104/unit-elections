@@ -28,8 +28,9 @@ if ($auth->isLoggedIn()) {
     <div class="col-lg-2"></div><div class="col-lg-8">
     <h2>Menu Items:</h2>
 
-    <p><b><em>Chapter Dashboard</em></b> - View all active unit elections in the lodge sorted by Chapter. Please only edit elections your chapter</p>
-	<p><b><em>Create Unit Election</em></b> - After a unit emails to request a unit election, use this to create a unit election record. Then send the Unit Leader Access Key and this link: <span class="badge badge-danger">https://elections.lodge104.net/</span> to the Unit Leader and ask them to add all eligible scouts on their dashboard</p>
+    <p><b><em><i class="fas fa-tachometer-alt pr-1"></i> Chapter Dashboard</em></b> - View all active unit elections in the lodge sorted by Chapter. Please only edit elections from your chapter</p>
+	<p><b><em><i class="fas fa-plus pr-1"></i> Create Unit Election</em></b> - After a unit emails to request a unit election, use this to create a unit election record. Then send the Unit Leader Access Key and this link: <span class="badge badge-danger">https://elections.lodge104.net/</span> to the Unit Leader and ask them to add all eligible scouts on their dashboard</p>
+	<p><b><em><i class="fas fa-poll-h pr-1"></i> Election Results</em></b> - Once an election is complete, use the Access Key to view the results of the election. Unit Leaders have an identical results page on their dashboard.</p>
 	<h4>In Dropdown:</h4>
 	<p><b><em>Edit Profile</em></b> - Edit your own user profile information including your name, contact info, avatar, etc</p>
     <p><b><em>Account Settings</em></b> - Change your email address and/or password</p>';
