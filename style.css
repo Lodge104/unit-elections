@@ -368,13 +368,20 @@ footer {
 
 footer p {
     color: #ccc;
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 400;
     letter-spacing: 0.02rem;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
     text-align: center;
-    text-transform: uppercase;
+}
+
+footer a {
+	color: #fff;
+	font-weight: 800;
+}
+
+footer a:hover {
+	color: #e31836;
 }
 
 .grecaptcha-badge {

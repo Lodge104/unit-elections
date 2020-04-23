@@ -51,7 +51,7 @@ if ($conn->connect_error) {
         </section>
 		<div class="card mb-3">
             <div class="card-body">
-				<h3 class="card-title d-inline-flex">Insturctions</h3>
+				<h3 class="card-title d-inline-flex">Instructions</h3>
 					<p>This is the chapter dashboard for unit elections. All unit elections in the lodge are located here and are sorted by Chapter. Please only edit elections for your chapter.<br><br>After a unit leader has contacted the chapter requesting a unit election, begin by creating a new unit election in this portal. Then share the <span class="badge badge-danger">Access Key</span> and a link to <span class="badge badge-danger">https://elections.lodge104.net/</span>. You may also share the voting link but it will not be active until voting is turned on.<br><br>The status of the unit election will remain <span class="badge badge-danger">Voting Not Open</span> until voting is turned on. Only turn on voting after the election team has spoken to the unit and voting is ready to begin. To turn on voting, click the button "Edit" under the "Edit" column. Then change "Voting Open?" to "Yes" and click save. Remember to change "Voting Open?" back to "No" after the election is complete. This will let the lodge leadership know the election is finished.<br><br>The status will change to <span class="badge badge-success">Completed</span>, once the election has been imported to LodgeMaster and the candidates can register for their Ordeal. This will happen within a week of the election.<br><br>If you run into any problems using the system, please use the live chat feature in the bottom right hand corner.</p>
 			 </div>
 		 </div>
