@@ -13,8 +13,13 @@ include 'misc/pagehead.php';
             <form class="text-center" name="loginform" method="post" action="ajax/checklogin.php">
                 <h3 class="form-signin-heading"><?php echo $title;?></h3>
                 <br>
+				<div class="alert alert-danger" role="alert">
+                <h5 class="alert-heading">Lodge Members Only</h5>
+                If you just created an account, your account will be manually activated within 12 hours. You will receive a notification once your account has been approved and you can login.
+              </div>
+				<br>
                 <div class="form-group">
-                    <input name="myusername" id="myusername" type="text" class="form-control input-lg" placeholder="Username" autofocus>
+                    <input name="myusername" id="myusername" type="text" class="form-control input-lg" placeholder="Email" autofocus>
                     <input name="mypassword" id="mypassword" type="password" class="form-control input-lg" placeholder="Password"> </div>
                 <div class="form-group">
                     <button name="Submit" id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>

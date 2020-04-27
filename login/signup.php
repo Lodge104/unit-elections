@@ -36,9 +36,9 @@ require 'misc/pagehead.php';
                 Only lodge members who are part of Chapter or Lodge Leadership are allowed to register for an account. All accounts are manually approved before access is given. Please use the email associated with your LodgeMaster profile.
               </div>
 				<br>
-                <input name="newuser" id="newuser" type="text" class="form-control input-lg" placeholder="Username" autofocus>
+                <input name="newuser" id="newuser" type="text" class="form-control input-lg" placeholder="Email" autofocus>
                 <div class="form-group">
-                    <input name="email" id="email" type="text" class="form-control input-lg" placeholder="Email"> </div>
+                    <input name="email" id="email" type="text" class="form-control input-lg" placeholder="Repeat Email"> </div>
                 <div class="form-group">
                     <input name="password1" id="password1" type="password" class="form-control input-lg" placeholder="Password">
                     <input name="password2" id="password2" type="password" class="form-control input-lg" placeholder="Repeat Password"> </div>
@@ -62,6 +62,9 @@ require 'misc/pagehead.php';
                         email: true
                         , required: true
                     }
+					, newuser: {
+						equalTo: "#email"
+					}
                     , password1: {
                         required: true
                         <?php if ($conf->password_policy_enforce == true) {
