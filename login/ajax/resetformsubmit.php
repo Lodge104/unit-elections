@@ -22,7 +22,7 @@ try {
 try {
     if ($validToken && ($decoded->pw_reset == "true")) {
         // Pulls settings
-        $config = PHPLogin::pullMultiSettings(array("password_policy_enforce", "password_min_length", "signup_thanks", "base_url"));
+        $config = PHPLogin\AppConfig::pullMultiSettings(array("password_policy_enforce", "password_min_length", "signup_thanks", "base_url"));
 
         // Pulls user by ID
         $user = PHPLogin\UserHandler::pullUserById($userid);
