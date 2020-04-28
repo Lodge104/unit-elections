@@ -1,5 +1,5 @@
 <?php
-$title = "Chapter Election Portal | Occoneechee Lodge - Order of the Arrow, BSA";
+$title = "Election Archives | Occoneechee Lodge - Order of the Arrow, BSA";
 $userrole = "Standard User"; // Allow only logged in users
 include "../login/misc/pagehead.php";
 
@@ -22,9 +22,6 @@ if ($conn->connect_error) {
 <head>
     <meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1" />
     <meta name=viewport content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
-
-
-    <title>Dashboard | Unit Elections Administration | Occoneechee Lodge - Order of the Arrow, BSA</title>
 	
 	<link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
 
@@ -46,15 +43,13 @@ if ($conn->connect_error) {
     <?php } ?>
         <section class="row">
             <div class="col-12">
-                <h2>Chapter's Unit Elections Dashboard</h2>
+                <h2>Election Archives</h2>
             </div>
         </section>
-		<div class="card mb-3">
-            <div class="card-body">
-				<h3 class="card-title d-inline-flex">Instructions</h3>
-					<p>This is the chapter dashboard for unit elections. All unit elections in the lodge are located here and are sorted by Chapter. Please only edit elections for your chapter.<br><br>After a unit leader has contacted the chapter requesting a unit election, begin by creating a new unit election in this portal. Then share the <span class="badge badge-danger">Access Key</span> and a link to <span class="badge badge-danger">https://elections.lodge104.net/</span>. You may also share the voting link but it will not be active until voting is turned on.<br><br>The status of the unit election will remain <span class="badge badge-danger">Voting Not Open</span> until voting is turned on. Only turn on voting after the election team has spoken to the unit and voting is ready to begin. To turn on voting, click the button "Edit" under the "Edit" column. Then change "Voting Open?" to "Yes" and click save. Remember to change "Voting Open?" back to "No" after the election is complete. This will let the lodge leadership know the election is finished.<br><br>The status will change to <span class="badge badge-success">Completed</span>, once the election has been imported to LodgeMaster and the candidates can register for their Ordeal. This will happen within a week of the election.<br><br>If you run into any problems using the system, please use the live chat feature in the bottom right hand corner.</p>
+			<div class="alert alert-danger" role="alert">
+				<h3>Warning</h3>
+				 	<p>These elections have been archived and are for records only. To return the unit election to the chapter dashboard, change the date of the election to a closer date.</p>
 			 </div>
-		 </div>
 
         <?php
           $getChaptersQuery = $conn->prepare("SELECT DISTINCT chapter FROM unitElections ORDER BY chapter ASC");
@@ -62,7 +57,7 @@ if ($conn->connect_error) {
           $getChaptersQ = $getChaptersQuery->get_result();
           if ($getChaptersQ->num_rows > 0) {
             while ($getChapters = $getChaptersQ->fetch_assoc()) {
-              $getUnitElectionsQuery = $conn->prepare("SELECT * from unitElections where chapter = ? AND ((unitCommunity = 'Test Unit' AND date(dateOfElection) BETWEEN date(date_add(now(), INTERVAL -30 day)) AND date(now()) or date(dateOfElection) BETWEEN date(now()) AND date(date_add(now(), INTERVAL 120 day))) OR (NOT unitCommunity = 'Test Unit' AND date(dateOfElection) BETWEEN date(date_add(now(), INTERVAL -183 day)) AND date(now()) or date(dateOfElection) BETWEEN date(now()) AND date(date_add(now(), INTERVAL 120 day)))) ORDER BY dateOfElection ASC");
+              $getUnitElectionsQuery = $conn->prepare("SELECT * from unitElections where chapter = ? AND NOT ((unitCommunity = 'Test Unit' AND date(dateOfElection) BETWEEN date(date_add(now(), INTERVAL -30 day)) AND date(now()) or date(dateOfElection) BETWEEN date(now()) AND date(date_add(now(), INTERVAL 120 day))) OR (NOT unitCommunity = 'Test Unit' AND date(dateOfElection) BETWEEN date(date_add(now(), INTERVAL -183 day)) AND date(now()) or date(dateOfElection) BETWEEN date(now()) AND date(date_add(now(), INTERVAL 120 day)))) ORDER BY dateOfElection ASC");
               $getUnitElectionsQuery->bind_param("s", $getChapters['chapter']);
               $getUnitElectionsQuery->execute();
               $getUnitElectionsQ = $getUnitElectionsQuery->get_result();
@@ -78,9 +73,6 @@ if ($conn->connect_error) {
                           <tr>
                             <th scope="col">Unit</th>
                             <th scope="col">Date of Election</th>
-                            <th scope="col">Access Key for Unit Leader</th>
-							<th scope="col">Eligible Scouts</th>
-                            <th scope="col">Voting Link</th>
                             <th scope="col">Edit</th>
 							<th scope="col"># of Votes</th>
 							<th scope="col">Status</th>
@@ -91,11 +83,6 @@ if ($conn->connect_error) {
                             ?><tr>
                               <td><?php echo $getUnitElections['unitCommunity'] . " " . $getUnitElections['unitNumber']; ?></td>
                               <td><?php echo date("m-d-Y", strtotime($getUnitElections['dateOfElection'])); ?></td>
-							  <td><input id="key" type="text" value="<?php echo $getUnitElections['accessKey']; ?>" disabled><button class="btn btn-primary" id="btn" data-clipboard-text="<?php echo $getUnitElections['accessKey']; ?>">Copy</button>
-						   	  </td>
-                              <td><a href="eligible-scouts.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Edit</a></td>
-                              <td><input id="foo" type="text" value="https://elections.lodge104.net/submit.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" disabled><button class="btn btn-primary" id="btn" data-clipboard-text="https://elections.lodge104.net/submit.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>">Copy</button>
-                              </td>
                               <td><a href="edit-unit-election.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Edit</a></td>
 							  <?php
                               $submissionsQuery = $conn->prepare("SELECT COUNT(*) AS unitTotal FROM submissions WHERE unitId=?");

@@ -75,6 +75,7 @@ if ($conn->connect_error) {
                         <label for="unitCommunity" class="required">Unit Type</label>
                         <select id="unitCommunity" name="unitCommunity" class="custom-select" required>
 							<option></option>
+							<option value="Test Unit" <?php echo ($getUnitElections['unitCommunity'] == 'Test Unit' ? 'selected' : ''); ?> >Test Unit</option>
 							<option value="Boy Troop" <?php echo ($getUnitElections['unitCommunity'] == 'Boy Troop' ? 'selected' : ''); ?> >Boy Troop</option>
 							<option value="Girl Troop" <?php echo ($getUnitElections['unitCommunity'] == 'Girl Troop' ? 'selected' : ''); ?> >Girl Troop</option>
 							<option value="Team" <?php echo ($getUnitElections['unitCommunity'] == 'Team' ? 'selected' : ''); ?> >Team</option>

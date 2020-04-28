@@ -1,5 +1,14 @@
 <nav class="navbar navbar-default">
 	<link rel="stylesheet" href="../libraries/fontawesome-free-5.12.0/css/all.min.css">
+	<script>
+  // @see https://docs.headwayapp.co/widget for more configuration options.
+  var HW_config = {
+    selector: ".badgeCont", // CSS selector where to inject the badge
+	trigger: ".toggleWidget",
+    account:  "xaM2Ax"
+  }
+</script>
+<script async src="https://cdn.headwayapp.co/widget.js"></script>
     <div class="container-fluid">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapsed" aria-expanded="false">
         <span class="glyphicon glyphicon-menu-hamburger"></span>
@@ -19,7 +28,10 @@ if (str_replace(' ', '', $this->mainlogo) == '') {
 <div class="collapse navbar-collapse" id="navbar-collapsed">
 
 <!-- BOOTSTRAP NAV LINKS GO HERE. USE <li> items with <a> links inside of <ul> -->
-
+<ul class="nav navbar-nav">
+	<li><a class="toggleWidget" href="#"><span class="changelogTerm">System Updates</span><span class="badgeCont"></span></a></a></li>
+</ul>
+	
 <?php
 
 if (!is_array($barmenu)) {
@@ -71,12 +83,23 @@ if ($auth->isLoggedIn()) {
     } ?>
 
     <ul class="nav navbar-nav navbar-right">
-		<li><a href="<?php echo $this->base_url; ?>/chapter/"><i class="fas fa-tachometer-alt pr-1"></i> Chapter Dashboard</a></li>
-		<li><a href="<?php echo $this->base_url; ?>/chapter/create-unit-election.php"><i class="fas fa-plus pr-1"></i> Create Unit Election</a></li>
-		<li><a href="<?php echo $this->base_url; ?>/chapter/results.php"><i class="fas fa-poll-h pr-1"></i> Election Results</a></li>
+		<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-cogs"></i> Chapter Options
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="userDropdown">
+				  <li><a href="<?php echo $this->base_url; ?>/chapter/"><i class="fas fa-tachometer-alt pr-1"></i> Chapter Dashboard</a></li>
+				  <li><a href="<?php echo $this->base_url; ?>/chapter/create-unit-election.php"><i class="fas fa-plus pr-1"></i> Create Unit Election</a></li>
+				  <li><a href="<?php echo $this->base_url; ?>/chapter/results.php"><i class="fas fa-poll-h pr-1"></i> Election Results</a></li>
+				  <li><a href="<?php echo $this->base_url; ?>/chapter/archive.php"><i class="fas fa-archive pr-1"></i> Election Archive</a></li>
+			</ul>
+		</li>
+				
+			
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-bars"></i> <?php echo $user; ?>
+                <i class="fas fa-bars"></i> Account
                 <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="userDropdown">

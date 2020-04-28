@@ -49,6 +49,7 @@ if ($conn->connect_error) {
                     <label for="unitCommunity" class="required">Unit Type</label>
                     <select id="unitCommunity" name="unitCommunity" class="custom-select" required>
                       <option></option>
+					  <option value="Test Unit">Test Unit</option>
                       <option value="Boy Troop">Boy Troop</option>
                       <option value="Girl Troop">Girl Troop</option>
                       <option value="Team">Team</option>
