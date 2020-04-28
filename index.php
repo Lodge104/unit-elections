@@ -27,13 +27,19 @@ if ($auth->isLoggedIn()) {
     <p>Click on your username in the top right corner to expose more menu options</p></div>
     <div class="col-lg-2"></div><div class="col-lg-8">
     <h2>Menu Items:</h2>
-
-    <p><b><em><i class="fas fa-tachometer-alt pr-1"></i> Chapter Dashboard</em></b> - View all active unit elections in the lodge sorted by Chapter. Please only edit elections from your chapter</p>
+	<p><b><em>System Updates</em></b> - View our change log for the election system. We are constantly adding new features and improving existing ones. We update the big things here.</p>
+	<p><b><em>Election Home</em></b> - That will take right back to this page.</p>
+	<p><b><em>Unit Leader Dashboard</em></b> - This is where unit leaders have the ability to view their unit election information with the access code given to them by you.</p>
+	<br>
+    <h4>In Chapter Options Dropdown:</h4>
+	<p><b><em><i class="fas fa-tachometer-alt pr-1"></i> Chapter Dashboard</em></b> - View all active unit elections in the lodge sorted by Chapter. Please only edit elections from your chapter</p>
 	<p><b><em><i class="fas fa-plus pr-1"></i> Create Unit Election</em></b> - After a unit emails to request a unit election, use this to create a unit election record. Then send the Unit Leader Access Key and this link: <span class="badge badge-danger">https://elections.lodge104.net/</span> to the Unit Leader and ask them to add all eligible scouts on their dashboard</p>
 	<p><b><em><i class="fas fa-poll-h pr-1"></i> Election Results</em></b> - Once an election is complete, use the Access Key to view the results of the election. Unit Leaders have an identical results page on their dashboard.</p>
-	<h4>In Dropdown:</h4>
+	<p><b><em><i class="fas fa-archive-alt pr-1"></i> Election Archive</em></b> - View all archived unit elections. If the it is a Test Unit, the election is automatically archived 30 days after the election date. If it is any other kind of unit, the election is automatically archived 6 months after the election.</p>
+	<br>
+	<h4>In Account Dropdown:</h4>
 	<p><b><em>Edit Profile</em></b> - Edit your own user profile information including your name, contact info, avatar, etc</p>
-    <p><b><em>Account Settings</em></b> - Change your email address and/or password</p>';
+    <p><b><em>Account Settings</em></b> - Change your email address and/or password</p><br>';
 
     if ($auth->isAdmin()) {
         echo '<h4>Admin Only In Dropdown:</h4>';
