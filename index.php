@@ -24,7 +24,7 @@ include "login/misc/pagehead.php";
 <?php
 if ($auth->isLoggedIn()) {
     echo '<div class="card mb-3"><div class="card-body"><div class="jumbotron text-center"><h1>Occoneechee Lodge<br>Unit Elections Portal</h1>
-    <p>Click on your username in the top right corner to expose more menu options</p></div>
+    <p>Click on chapter options or account in the top right corner to expose more menu options</p></div>
     <div class="col-lg-2"></div><div class="col-lg-8">
     <h2>Menu Items:</h2>
 	<p><b><em>System Updates</em></b> - View our change log for the election system. We are constantly adding new features and improving existing ones. We update the big things here.</p>
