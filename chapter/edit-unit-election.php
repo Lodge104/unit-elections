@@ -118,6 +118,7 @@ if ($conn->connect_error) {
                           <option value="lauchsoheen" <?php echo ($getUnitElections['chapter'] == 'Lauchsoheen' ? 'selected' : ''); ?> >Lauchsoheen</option>
                           <option value="mimahuk" <?php echo ($getUnitElections['chapter'] == 'Mimahuk' ? 'selected' : ''); ?> >Mimahuk</option>
 						  <option value="netami" <?php echo ($getUnitElections['chapter'] == 'Netami' ? 'selected' : ''); ?> >Netami</option>
+						  <option value="netopalis" <?php echo ($getUnitElections['chapter'] == 'Netopalis' ? 'selected' : ''); ?> >Netopalis</option>
 						  <option value="neusiok" <?php echo ($getUnitElections['chapter'] == 'Neusiok' ? 'selected' : ''); ?> >Neusiok</option>
 						  <option value="saponi" <?php echo ($getUnitElections['chapter'] == 'Saponi' ? 'selected' : ''); ?> >Saponi</option>
 						  <option value="temakwe" <?php echo ($getUnitElections['chapter'] == 'Temakwe' ? 'selected' : ''); ?> >Temakwe</option>

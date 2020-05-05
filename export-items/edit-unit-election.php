@@ -103,18 +103,7 @@ if ($conn->connect_error) {
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="chapter">Chapter</label>
-                        <select id="chapter" name="chapter" class="custom-select" disabled>
-                          <option></option>
-                          <option value="eluwak" <?php echo ($getUnitElections['chapter'] == 'Eluwak' ? 'selected' : ''); ?> >Eluwak</option>
-                          <option value="ilaumachque" <?php echo ($getUnitElections['chapter'] == 'Ilau Machque' ? 'selected' : ''); ?> >Ilau Machque</option>
-                          <option value="kiowa" <?php echo ($getUnitElections['chapter'] == 'Kiowa' ? 'selected' : ''); ?> >Kiowa</option>
-                          <option value="lauchsoheen" <?php echo ($getUnitElections['chapter'] == 'Lauchsoheen' ? 'selected' : ''); ?> >Lauchsoheen</option>
-                          <option value="mimahuk" <?php echo ($getUnitElections['chapter'] == 'Mimahuk' ? 'selected' : ''); ?> >Mimahuk</option>
-						  <option value="netami" <?php echo ($getUnitElections['chapter'] == 'Netami' ? 'selected' : ''); ?> >Netami</option>
-						  <option value="neusiok" <?php echo ($getUnitElections['chapter'] == 'Neusiok' ? 'selected' : ''); ?> >Neusiok</option>
-						  <option value="saponi" <?php echo ($getUnitElections['chapter'] == 'Saponi' ? 'selected' : ''); ?> >Saponi</option>
-						  <option value="temakwe" <?php echo ($getUnitElections['chapter'] == 'Temakwe' ? 'selected' : ''); ?> >Temakwe</option>
-                        </select>
+                        <input id="chapter" name="chapter" type="text" class="form-control" value="<?php echo $getUnitElections['chapter']; ?>" disabled>
                       </div>
                     </div>
                   </div>
