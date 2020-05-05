@@ -49,13 +49,14 @@ header("Pragma: no-cache");
               ?>
               <section class="row">
                   <div class="col-12">
-                      <h2>Unit Election Dashboard</h2>
+                      <h2>Unit Leader Election Dashboard</h2>
                   </div>
               </section>
 			  <div class="card mb-3">
                   <div class="card-body">
-				  	<h3 class="card-title d-inline-flex">Insturctions</h3>
-					  <p>This is the dashboard for your unit election. Please start by making sure all the information in the first box is accurate and up to date. If not, please click the edit button to correct it.<br><br> Secondly, please add all eligible scouts who will be on the ballot in the appropriate box. Please reference the critira information to determine which scouts are eligible. Any scout not included by the start of the election will have to wait until the next year. After the election, you can view the results with a link that will appear on your dashboard.<br><br>It is up to you to determine when you would like to announce the results. You may announce them directly after the election or wait until another time. Please speak with the election team as many chapters offer district wide call-out ceremonies. Additionally, the election team has information to give to newly elected candidates regardless of when the results are announced, so please retrieve the information from them.<br><br>The status of the unit election will remain <span class="badge badge-danger">In Progress</span> until the results are imported into our membership database. Once the status says <span class="badge badge-success">Completed</span>, your scouts will be able to register for their ordeal.</p>
+				  	<h3 class="card-title d-inline-flex">Instructions</h3>
+					  <p>This is the dashboard for your unit election. Please start by making sure all the information in the first box is accurate and up to date. If not, please click the edit button to correct it.<br><br> 
+					  Secondly, please add all eligible scouts who will be on the ballot in the appropriate box. Please reference the criteria information to determine which scouts are eligible. Any scout not included by the start of the election will have to wait until the next year. After the election, you can view the results with a link that will appear on your dashboard.<br><br>It is up to you to determine when you would like to announce the results. You may announce them directly after the election or wait until another time. Please speak with the election team as many chapters offer district wide call-out ceremonies. Additionally, the election team has information to give to newly elected candidates regardless of when the results are announced, so please retrieve the information from them.<br><br>The status of the unit election will remain <span class="badge badge-danger">In Progress</span> until the results are imported into our membership database. Once the status says <span class="badge badge-success">Completed</span>, your scouts will be able to register for their ordeal.</p>
 				  </div>
 		 	  </div>
               <?php
@@ -152,20 +153,13 @@ header("Pragma: no-cache");
 				<div class="card mb-3">
                       <div class="card-body">
                         <h3 class="card-title">Eligible Scout Criteria</h3>
-                        <div>The	Order	of	the	Arrow	is	Scouting’s	National	Honor	Society.	The	fourfold purpose of	the	OA	is:
-                          <ol class="mb-3">
-                            <li>To	recognize	those	campers	– Scouts	and	Scouters	– who	best	exemplify	the Scout	Oath	and	Law	in	their	daily	lives,	and	by	such	recognition	cause	other campers	to	conduct	themselves	in	such	manner	as	to	warrant	recognition.</li>
-                            <li>To	develop	and	maintain	camping	traditions	and	spirit.</li>
-                            <li>To	promote	Scout	camping,	which	reaches	its	greatest	effectiveness	as	a	part of	the	unit’s	camping	program,	both	year-round	and	in	the	summer	camp,	as directed	by	the	camping	committee	of	the	council.</li>
-                            <li>To	crystallize	the	Scout	habit	of	helpfulness	into	a	life	purpose	of	leadership in	cheerful	service	to	others.</li>
-                          </ol>
-
-                        Youth	membership	qualifications:
+                        <div>Youth	membership	qualifications:
                         <ol class="mb-3">
                           <li>Registered	member	of	the	Boy	Scouts	of America</li>
                           <li>Hold	the	rank	of	First	Class,	hold	the	Scouts	BSA	First	Class	rank,	the	Venturing	Discovery	Award,	or	the	Sea	Scout	Ordinary	rank	or	higher</li>
                           <li>In	the	past	two	years,	have	completed	fifteen	(15)	days	and	nights	of	camping	under	the	auspices	of	the	Boy	Scouts	of	America.		The	fifteen	days	and	nights	of	camping	must	include	one	long-term	camp	of	six	days	and	five	nights,	and	the	balance	of	the	camping	must	be	short-term	(1,	2,	or	3	night)	camping	trips.</li>
                           <li>Scoutmaster	approval</li>
+						  <li><span class="badge badge-danger">COVID-19</span> Virtual camping can now count towards qualifications. Please see the policy exception <a href='https://lodge104.net/coronavirus/#April29'>here</a></li>
                         </ol></div>
                       </div>
                     </div>
