@@ -80,7 +80,6 @@ header("Pragma: no-cache");
                             <th scope="col"># of Registered Youth</th>
                             <th scope="col">Chapter</th>
                             <th scope="col">Date of Election</th>
-							<th scope="col"># of Votes</th>
                             <th scope="col">Results</th>
 							<th scope="col">Status</th>
                           </tr>
@@ -93,17 +92,6 @@ header("Pragma: no-cache");
                             <td><?php echo $getUnitElections['numRegisteredYouth']; ?></td>
                             <td><?php echo $getUnitElections['chapter']; ?></td>
                             <td><?php echo date("m-d-Y", strtotime($getUnitElections['dateOfElection'])); ?></td>
-							<?php
-                              $submissionsQuery = $conn->prepare("SELECT COUNT(*) AS unitTotal FROM submissions WHERE unitId=?");
-                              $submissionsQuery->bind_param("s", $getUnitElections['id']);
-                              $submissionsQuery->execute();
-                              $submissionsQ = $submissionsQuery->get_result();
-                              if ($submissionsQ->num_rows > 0) {
-                                $submissions = $submissionsQ->fetch_assoc();
-                                ?><td><?php echo $submissions['unitTotal']; ?> out of <?php echo $getUnitElections['numRegisteredYouth']; ?> Scouts</td>
-                              <?php }
-                              $submissionsQuery->close();
-                              ?>
                             <td>
                                 <?php
 

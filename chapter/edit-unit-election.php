@@ -70,7 +70,7 @@ if ($conn->connect_error) {
                         <input id="unitNumber" name="unitNumber" type="number" class="form-control" value="<?php echo $getUnitElections['unitNumber']; ?>" required>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="unitCommunity" class="required">Unit Type</label>
                         <select id="unitCommunity" name="unitCommunity" class="custom-select" required>
@@ -84,12 +84,21 @@ if ($conn->connect_error) {
 						</select>
                       </div>
                     </div>
-					  <div class="col-md-4">
+					  <div class="col-md-3">
                       <div class="form-group">
                         <label for="exported" class="required">Imported into LodgeMaster?</label>
                         <select id="exported" name="exported" class="custom-select" disabled>
                           <option value="No" <?php echo ($getUnitElections['exported'] == 'No' ? 'selected' : ''); ?> >No</option>
                           <option value="Yes" <?php echo ($getUnitElections['exported'] == 'Yes' ? 'selected' : ''); ?> >Yes</option>
+						  </select>
+					  </div>
+                    </div>
+					  <div class="col-md-3">
+                      <div class="form-group">
+                        <label for="onlinevote" class="required">Unit Election Type</label>
+                        <select id="onlinevote" name="onlinevote" class="custom-select" required>
+                          <option value="Yes" <?php echo ($getUnitElections['onlinevote'] == 'Yes' ? 'selected' : ''); ?> >Voting Online</option>
+						  <option value="No" <?php echo ($getUnitElections['onlinevote'] == 'No' ? 'selected' : ''); ?> >Voting In-Person</option>
 						  </select>
 					  </div>
                     </div>
@@ -114,7 +123,7 @@ if ($conn->connect_error) {
                           <option></option>
                           <option value="eluwak" <?php echo ($getUnitElections['chapter'] == 'Eluwak' ? 'selected' : ''); ?> >Eluwak</option>
                           <option value="ilaumachque" <?php echo ($getUnitElections['chapter'] == 'Ilau Machque' ? 'selected' : ''); ?> >Ilau Machque</option>
-                          <option value="kiowa" <?php echo ($getUnitElections['chapter'] == 'kiowa' ? 'selected' : ''); ?> >Kiowa</option>
+                          <option value="kiowa" <?php echo ($getUnitElections['chapter'] == 'Kiowa' ? 'selected' : ''); ?> >Kiowa</option>
                           <option value="lauchsoheen" <?php echo ($getUnitElections['chapter'] == 'Lauchsoheen' ? 'selected' : ''); ?> >Lauchsoheen</option>
                           <option value="mimahuk" <?php echo ($getUnitElections['chapter'] == 'Mimahuk' ? 'selected' : ''); ?> >Mimahuk</option>
 						  <option value="netami" <?php echo ($getUnitElections['chapter'] == 'Netami' ? 'selected' : ''); ?> >Netami</option>
@@ -167,7 +176,8 @@ if ($conn->connect_error) {
                         <input id="sm_phone" name="sm_phone" type="text" class="form-control" placeholder="Phone" value="<?php echo $getUnitElections['sm_phone']; ?>" >
                       </div>
                     </div>
-                  </div>
+				  </div>
+				  <?php if (($getUnitElections['onlinevote'] == 'Yes')) { ?>
 				  <hr></hr>
 				  <div class="form-row">
 					 <div class="col-md-4">
@@ -180,6 +190,9 @@ if ($conn->connect_error) {
 					  </div>
                     </div>
 				  </div>
+				  <?php } else { ?>
+					<div></div>
+					<?php } ?>
                   <a href="index.php" class="btn btn-secondary">Cancel</a>
                   <input type="submit" class="btn btn-primary" value="Save">
                 </form>

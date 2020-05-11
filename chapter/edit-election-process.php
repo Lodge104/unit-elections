@@ -16,6 +16,7 @@ if (isset($_POST['unitId'])) { $unitId = $_POST['unitId']; } else { die("No unit
 if (isset($_POST['accessKey'])) { $accessKey = $_POST['accessKey']; } else { die("No unit key."); }
 if (isset($_POST['unitNumber'])) {  $unitNumber = $_POST['unitNumber']; } else { $unitNumber = ""; }
 if (isset($_POST['unitCommunity'])) {  $unitCommunity = $_POST['unitCommunity']; } else { $unitCommunity = ""; }
+if (isset($_POST['onlinevote'])) {  $onlinevote = $_POST['onlinevote']; } else { $onlinevote = ""; }
 if (isset($_POST['numRegisteredYouth'])) {  $numRegisteredYouth = $_POST['numRegisteredYouth']; } else { $numRegisteredYouth = ""; }
 if (isset($_POST['dateOfElection'])) {  $dateOfElection = $_POST['dateOfElection']; } else { $dateOfElection = ""; }
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
@@ -36,8 +37,8 @@ $updateElection->bind_param("sssssssssss", $open, $sm_name, $sm_address_line1, $
 $updateElection->execute();
 $updateElection->close();
 
-$updateElection1 = $conn->prepare("UPDATE unitElections SET unitNumber=?, unitCommunity=?, dateOfElection=?, chapter=? WHERE id = ?");
-$updateElection1->bind_param("sssss", $unitNumber, $unitCommunity, $dateOfElection, ucfirst($chapter), $unitId);
+$updateElection1 = $conn->prepare("UPDATE unitElections SET unitNumber=?, unitCommunity=?, onlinevote=?, dateOfElection=?, chapter=? WHERE id = ?");
+$updateElection1->bind_param("ssssss", $unitNumber, $unitCommunity, $onlinevote, $dateOfElection, ucfirst($chapter), $unitId);
 $updateElection1->execute();
 $updateElection1->close();
 

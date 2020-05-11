@@ -44,7 +44,7 @@ if ($conn->connect_error) {
                     <input id="unitNumber" name="unitNumber" type="number" class="form-control" required>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="unitCommunity" class="required">Unit Type</label>
                     <select id="unitCommunity" name="unitCommunity" class="custom-select" required>
@@ -55,6 +55,15 @@ if ($conn->connect_error) {
                       <option value="Team">Team</option>
                       <option value="Crew">Crew</option>
                       <option value="Ship">Ship</option>
+					</select>
+                  </div>
+                </div>
+				  <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="onlinevote" class="required">Unit Election Type</label>
+                    <select id="onlinevote" name="onlinevote" class="custom-select" required>
+					  <option value="Yes">Voting Online</option>
+                      <option value="No">Voting In-Person</option>
 					</select>
                   </div>
                 </div>

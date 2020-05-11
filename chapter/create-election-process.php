@@ -11,6 +11,7 @@ if ($conn->connect_error) {
 
 if (isset($_POST['unitNumber'])) {  $unitNumber = $_POST['unitNumber']; } else { $unitNumber = ""; }
 if (isset($_POST['unitCommunity'])) {  $unitCommunity = $_POST['unitCommunity']; } else { $unitCommunity = ""; }
+if (isset($_POST['onlinevote'])) {  $onlinevote = $_POST['onlinevote']; } else { $onlinevote = ""; }
 if (isset($_POST['numRegisteredYouth'])) {  $numRegisteredYouth = $_POST['numRegisteredYouth']; } else { $numRegisteredYouth = ""; }
 if (isset($_POST['dateOfElection'])) {  $dateOfElection = $_POST['dateOfElection']; } else { $dateOfElection = ""; }
 if (isset($_POST['chapter'])) {  $chapter = $_POST['chapter']; } else { $chapter = ""; }
@@ -25,8 +26,8 @@ if (isset($_POST['sm_email'])) {  $sm_email = $_POST['sm_email']; } else { $sm_e
 if (isset($_POST['sm_phone'])) {  $sm_phone = $_POST['sm_phone']; } else { $sm_phone = ""; }
 
 
-$createElection = $conn->prepare("INSERT INTO unitElections(unitNumber, unitCommunity, chapter, sm_name, sm_address_line1, sm_address_line2, sm_city, sm_state, sm_zip, sm_email, sm_phone, numRegisteredYouth, dateOfElection) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
-$createElection->bind_param("sssssssssssss", $unitNumber, $unitCommunity, ucfirst($chapter), $sm_name, $sm_address_line1, $sm_address_line2, $sm_city, $sm_state, $sm_zip, $sm_email, $sm_phone, $numRegisteredYouth, $dateOfElection);
+$createElection = $conn->prepare("INSERT INTO unitElections(unitNumber, unitCommunity, chapter, sm_name, sm_address_line1, sm_address_line2, sm_city, sm_state, sm_zip, sm_email, sm_phone, numRegisteredYouth, dateOfElection, onlinevote) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+$createElection->bind_param("ssssssssssssss", $unitNumber, $unitCommunity, ucfirst($chapter), $sm_name, $sm_address_line1, $sm_address_line2, $sm_city, $sm_state, $sm_zip, $sm_email, $sm_phone, $numRegisteredYouth, $dateOfElection, $onlinevote);
 $createElection->execute();
 $createElection->close();
 
