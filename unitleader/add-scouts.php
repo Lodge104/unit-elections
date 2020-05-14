@@ -13,7 +13,7 @@ if (isset($_POST['eligibleScoutId'])) {  $eligibleScoutId = $_POST['eligibleScou
 if (isset($_POST['firstName'])) {  $firstName = $_POST['firstName']; }
 if (isset($_POST['lastName'])) {  $lastName = $_POST['lastName']; }
 if (isset($_POST['dob'])) {  $dob = $_POST['dob']; }
-if (isset($_POST['rank'])) {  $rank = $_POST['rank']; }
+if (isset($_POST['bsa_id'])) {  $bsa_id = $_POST['bsa_id']; }
 if (isset($_POST['address_line1'])) {  $address_line1 = $_POST['address_line1']; }
 if (isset($_POST['address_line2'])) {  $address_line2 = $_POST['address_line2']; }
 if (isset($_POST['city'])) {  $city = $_POST['city']; }
@@ -24,17 +24,17 @@ if (isset($_POST['phone'])) {  $phone = $_POST['phone']; }
 
 for ($i = 0; $i < count($eligibleScoutId); $i++) {
   if ($eligibleScoutId[$i] == "new") {
-    if ($firstName[$i]=="" && $lastName[$i]=="" && $dob[$i]=="" && $rank[$i]==""
+    if ($firstName[$i]=="" && $lastName[$i]=="" && $dob[$i]=="" && $bsa_id[$i]==""
         && $address_line1[$i]=="" && $address_line2[$i]=="" && $city[$i]==""
         && $state[$i]=="" && $zip[$i]=="" && $email[$i]=="" && $phone[$i]=="") {} else {
-          $insertScoutQuery = $conn->prepare("INSERT INTO eligibleScouts(unitId,lastName,firstName,rank,dob,address_line1,address_line2,city,state,zip,phone,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
-          $insertScoutQuery->bind_param("ssssssssssss", $unitId,$lastName[$i],$firstName[$i],$rank[$i],$dob[$i],$address_line1[$i],$address_line2[$i],$city[$i],$state[$i],$zip[$i],$phone[$i],$email[$i]);
+          $insertScoutQuery = $conn->prepare("INSERT INTO eligibleScouts(unitId,lastName,firstName,bsa_id,dob,address_line1,address_line2,city,state,zip,phone,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+          $insertScoutQuery->bind_param("ssssssssssss", $unitId,$lastName[$i],$firstName[$i],$bsa_id[$i],$dob[$i],$address_line1[$i],$address_line2[$i],$city[$i],$state[$i],$zip[$i],$phone[$i],$email[$i]);
           $insertScoutQuery->execute();
           $insertScoutQuery->close();
     }
   } else {
     if ($eligibleScoutId[$i] >= 0 && $eligibleScoutId[$i] !== "") {
-      if ($firstName[$i]=="" && $lastName[$i]=="" && $dob[$i]=="" && $rank[$i]==""
+      if ($firstName[$i]=="" && $lastName[$i]=="" && $dob[$i]=="" && $bsa_id[$i]==""
           && $address_line1[$i]=="" && $address_line2[$i]=="" && $city[$i]==""
           && $state[$i]=="" && $zip[$i]=="" && $email[$i]=="" && $phone[$i]=="") {
             $deleteScoutQuery = $conn->prepare("DELETE from eligibleScouts WHERE id = ?");
@@ -42,8 +42,8 @@ for ($i = 0; $i < count($eligibleScoutId); $i++) {
             $deleteScoutQuery->execute();
             $deleteScoutQuery->close();
       } else {
-        $updateScoutQuery = $conn->prepare("UPDATE eligibleScouts SET lastName=?,firstName=?,rank=?,dob=?,address_line1=?,address_line2=?,city=?,state=?, zip=?,phone=?, email=? WHERE id = ?");
-        $updateScoutQuery->bind_param("ssssssssssss",$lastName[$i],$firstName[$i],$rank[$i],$dob[$i],$address_line1[$i],$address_line2[$i],$city[$i],$state[$i],$zip[$i],$phone[$i],$email[$i],$eligibleScoutId[$i]);
+        $updateScoutQuery = $conn->prepare("UPDATE eligibleScouts SET lastName=?,firstName=?,bsa_id=?,dob=?,address_line1=?,address_line2=?,city=?,state=?, zip=?,phone=?, email=? WHERE id = ?");
+        $updateScoutQuery->bind_param("ssssssssssss",$lastName[$i],$firstName[$i],$bsa_id[$i],$dob[$i],$address_line1[$i],$address_line2[$i],$city[$i],$state[$i],$zip[$i],$phone[$i],$email[$i],$eligibleScoutId[$i]);
         $updateScoutQuery->execute();
         $updateScoutQuery->close();
       }
