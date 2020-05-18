@@ -76,7 +76,7 @@ header("Pragma: no-cache");
               if ($unitInfoQ->num_rows > 0) {
                 $unitInfo = $unitInfoQ->fetch_assoc();
 
-                ?><h2>Unit Election: <?php echo $unitInfo['unitNumber'] . " " . $unitInfo['unitCommunity']; ?></h2>
+                ?><h2>Unit Election: <?php echo $unitInfo['unitCommunity'] . " " . $unitInfo['unitNumber']; ?></h2>
                 <?php
 
                 $tz = 'America/New_York';

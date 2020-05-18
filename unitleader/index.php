@@ -56,7 +56,7 @@ header("Pragma: no-cache");
                   <div class="card-body">
 				  	<h3 class="card-title d-inline-flex">Instructions</h3>
 					  <p>This is the dashboard for your unit election. Please start by making sure all the information in the first box is accurate and up to date. If not, please click the edit button to correct it.<br><br> 
-					  Secondly, please add all eligible scouts who will be on the ballot in the appropriate box. Please reference the criteria information to determine which scouts are eligible. Any scout not included by the start of the election will have to wait until the next year. After the election, you can view the results with a link that will appear on your dashboard.<br><br>It is up to you to determine when you would like to announce the results. You may announce them directly after the election or wait until another time. Please speak with the election team as many chapters offer district wide call-out ceremonies. Additionally, the election team has information to give to newly elected candidates regardless of when the results are announced, so please retrieve the information from them.<br><br>The status of the unit election will remain <span class="badge badge-danger">In Progress</span> until the results are imported into our membership database. Once the status says <span class="badge badge-success">Completed</span>, your scouts will be able to register for their ordeal.</p>
+					  Secondly, please add all eligible scouts who will be on the ballot in the appropriate box. Please reference the criteria information to determine which scouts are eligible. Any scout not included by the start of the election will have to wait until the next year.<br><br>If this is a virtual election, the voting link to give your scouts is located on this dashboard. The voting link can be shared to your scouts prior to the election but won't be active until the election team opens voting. Note - the link can only be used on any particular device once to prevent voting more than once. If there a siblings in a unit, make sure they each have their own device (mobile devices work as well). After the election, you can view the results with a link that will appear on your dashboard.<br><br>It is up to you to determine when you would like to announce the results. You may announce them directly after the election or wait until another time. Please speak with the election team as many chapters offer district wide call-out ceremonies. Additionally, the election team has information to give to newly elected candidates regardless of when the results are announced, so please retrieve the information from them.<br><br>The status of the unit election will remain <span class="badge badge-danger">In Progress</span> until the results are imported into our membership database. Once the status says <span class="badge badge-success">Completed</span>, your scouts will be able to register for their ordeal.</p>
 				  </div>
 		 	  </div>
               <?php
@@ -135,6 +135,12 @@ header("Pragma: no-cache");
                         <?php echo $getUnitElections['sm_phone']; ?><br>
                       </div>
                     </div>
+					<h5 class="card-title">Voting Link</h5>
+					  <div class="row">
+						  <div class="col-auto">
+						  <button class="btn btn-primary" id="btn" data-clipboard-text="https://elections.lodge104.net/submit.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>">Copy Link</button> <input id="foo" type="text" size="88" value="https://elections.lodge104.net/submit.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" disabled>
+					  	  </div>
+					  </div>
                   </div>
                 </div>
 				
@@ -360,7 +366,7 @@ header("Pragma: no-cache");
                   <form action='' method="get">
                     <div class="form-group">
                       <label for="accessKey" class="required">Access Key</label>
-                      <input type="text" id="accessKey" name="accessKey" class="form-control" required>
+                      <input type="text" id="accessKey" name="accessKey" class="form-control" autocomplete="off" required>
                     </div>
                     <input type="submit" class="btn btn-primary" value="Submit">
                   </form>
@@ -379,7 +385,7 @@ header("Pragma: no-cache");
                 <form action='' method="get">
                   <div class="form-group">
                     <label for="accessKey" class="required">Access Key</label>
-                    <input type="text" id="accessKey" name="accessKey" class="form-control" required>
+                    <input type="text" id="accessKey" name="accessKey" class="form-control" autocomplete="off" required>
                   </div>
                   <input type="submit" class="btn btn-primary" value="Submit">
                 </form>
@@ -398,6 +404,19 @@ header("Pragma: no-cache");
     <script src="../libraries/jquery-3.4.1.min.js"></script>
     <script src="../libraries/popper-1.16.0.min.js"></script>
     <script src="../libraries/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+	<script src="../dist/clipboard.min.js"></script>
+
+    								<script>
+    									var clipboard = new ClipboardJS('.btn');
+
+    									clipboard.on('success', function(e) {
+												console.log(e);
+										});
+
+										clipboard.on('error', function(e) {
+											console.log(e);
+										});
+								    </script>
 
 </body>
 
