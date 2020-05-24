@@ -126,15 +126,15 @@ header("Pragma: no-cache");
                     <a href="/submit.php?accessKey=<?php echo $accessKey; ?><?php echo ($_GET['ignoreTime'] == 'true' ? '&ignoreTime=true' : ''); ?><?php echo ($_GET['ignorePreviousSubmission'] == 'true' ? '&ignorePreviousSubmission=true' : ''); ?>" class="btn btn-secondary mb-3">Show qualifications again</a>
                     <div class="card mb-3">
                       <div class="card-body">
-                        <p>Remember: The election is by secret ballot, so no one will know for who you are voting. The OA is not a popularity contest! Don't vote for a Scout just because he is your friend, or older than the rest. What really counts is his loyalty to the Scout Oath and Law.</p>
-                        <p>Who is a friend to all? Who is pleasant and easy to get along with? Who is cheerful, even when he has many tiresome jobs to do? Who has served your unit all year round, faithfully attending meetings and helping with service projects? Do you think he will continue his service in the future? Vote for only those you believe will continue in unselfish service to your troop.</p>
+                        <p>Remember: The election is by secret ballot, so no one will know for who you are voting for or against. The OA is not a popularity contest! Don't vote for a Scout just because they're your friend, or older than the rest. What really counts is their loyalty to the Scout Oath and Law.</p>
+                        <p>Who is a friend to all? Who is pleasant and easy to get along with? Who is cheerful, even when they have many tiresome jobs to do? Who has served your unit all year round, faithfully attending meetings and helping with service projects? Do you think they will continue his service in the future? Vote for only those you believe will continue in unselfish service to your troop.</p>
                       </div>
                     </div>
                     <form method="POST" action="index-process.php" enctype="multipart/form-data" id="unitElectionForm">
                       <input type="hidden" name="unitId" id="unitId" value="<?php echo $unitInfo['id']; ?>">
                       <div class="card mb-3">
                         <div class="card-body">
-                          <p>Please check the box next to each Scout you would like to vote for. You may vote for all, some, one, or none.</p>
+                          <p>Please check the box next to each Scout you would like to vote for. You may vote for all, some, one, or none. If you do not check any boxes and click submit, it will count as a vote for none.</p>
                           <?php $count = 1;
                           while($eligibleScout = $eligibleScoutsQ->fetch_assoc()) {
                             $eligibleScoutsArray[] = $eligibleScout['id'];
