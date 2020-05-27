@@ -118,7 +118,12 @@ header("Pragma: no-cache");
                         </ol></div>
                       </div>
                     </div>
-                    <a href="/submit.php?accessKey=<?php echo $accessKey; ?>&watchedVideo=true<?php echo ($_GET['ignoreTime'] == 'true' ? '&ignoreTime=true' : ''); ?><?php echo ($_GET['ignorePreviousSubmission'] == 'true' ? '&ignorePreviousSubmission=true' : ''); ?>" class="btn btn-primary mb-3">I'm ready to vote!</a>
+  					<div class="row">
+					<div class="col-auto">
+						<a href="thanks.php?error=1" class="btn btn-outline-secondary">Cancel</a></div>
+					<div class="col-auto">
+						<a href="/submit.php?accessKey=<?php echo $accessKey; ?>&watchedVideo=true<?php echo ($_GET['ignoreTime'] == 'true' ? '&ignoreTime=true' : ''); ?><?php echo ($_GET['ignorePreviousSubmission'] == 'true' ? '&ignorePreviousSubmission=true' : ''); ?>" class="btn btn-primary mb-3">I'm ready to vote!</a></div>
+					</div>
                     <?php
                   } else {
                     //insert form elements here
@@ -134,7 +139,7 @@ header("Pragma: no-cache");
                       <input type="hidden" name="unitId" id="unitId" value="<?php echo $unitInfo['id']; ?>">
                       <div class="card mb-3">
                         <div class="card-body">
-                          <p>Please check the box next to each Scout you would like to vote for. You may vote for all, some, one, or none. If you do not check any boxes and click submit, it will count as a vote for none.</p>
+                          <p>Please check the box next to each Scout you would like to vote for. You may vote for all, some, one, or none. If you do not check any boxes and click submit, it will count as a vote for none. If you do not wish to vote at all, please click cancel.</p>
                           <?php $count = 1;
                           while($eligibleScout = $eligibleScoutsQ->fetch_assoc()) {
                             $eligibleScoutsArray[] = $eligibleScout['id'];
@@ -156,6 +161,7 @@ header("Pragma: no-cache");
                       </div>
                       <input type="hidden" id="eligibleScouts" name="eligibleScouts" value="<?php print_r(implode(',', $eligibleScoutsArray)); ?>">
                       <input type="hidden" id="accessKey" name="accessKey" value="<?php echo $accessKey; ?>">
+					  <a href="thanks.php?error=1" class="btn btn-outline-secondary">Cancel</a>
                       <button type="submit" name="submit" value="submit" class="btn btn-primary"><i class="fas fa-paper-plane pr-1"></i> Submit</button>
                       <div class="my-2"><small class="text-muted">Note: You will only be able to submit once, so make sure your ballot is correct!</small></div>
                     </form><?php

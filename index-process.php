@@ -42,9 +42,9 @@ if (isset($_POST['submit'])) {
       $accessKey = $_POST['accessKey'];
       setcookie($accessKey, "voted-" . time(), time() + (86400 * 2)); //prevent voting for 2 days
     }
-    header("Location: thanks.php");
+    header("Location: thanks.php?success=1");
 } else {
-    header("Location: index.php");
+    header("Location: thanks.php?error=1");
 }
 
 ?>

@@ -23,7 +23,7 @@ include "login/misc/pagehead.php";
 
 <?php
 if ($auth->isLoggedIn()) {
-    echo '<div class="card mb-3"><div class="card-body"><div class="jumbotron text-center"><h1>Occoneechee Lodge<br>Unit Elections Portal</h1>
+ 	echo '<div class="card mb-3"><div class="card-body"><div class="jumbotron text-center"><h1>Occoneechee Lodge<br>Unit Elections Portal</h1>
     <p>Click on chapter options or account in the top right corner to expose more menu options</p></div>
     <div class="col-lg-2"></div><div class="col-lg-8">
     <h2>Menu Items:</h2>

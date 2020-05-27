@@ -112,8 +112,10 @@ header("Pragma: no-cache");
 								  <?php
 								  if (($getUnitElections['exported'] == 'Yes')) { ?>
                                   <span class="badge badge-success">Completed</span>
+                                <?php } elseif (($getUnitElections['open'] == 'Yes')) { ?>
+                                  <span class="badge badge-warning">Voting Open</span>
                                 <?php } else { ?>
-                                  <span class="badge badge-danger">In Progress</span>
+                                  <span class="badge badge-danger">Voting Not Open</span>
                                 <?php } ?>
 							</td>
                           </tr>
