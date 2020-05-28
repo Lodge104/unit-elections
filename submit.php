@@ -18,6 +18,17 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="libraries/fontawesome-free-5.12.0/css/all.min.css">
     <link rel="stylesheet" href="https://use.typekit.net/awb5aoh.css" media="all">
     <link rel="stylesheet" href="style.css">
+	
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-37461006-19"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-37461006-19');
+</script>
+
 
 
 </head>
