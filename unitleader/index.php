@@ -34,6 +34,14 @@ header("Pragma: no-cache");
             <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
         </div>
     <?php } ?>
+	 <?php
+      if ($_GET['status'] == 2) { ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <div class="alert alert-success" role="alert">
+            <strong>Saved!</strong> Your adult nomination has been saved. Your Unit Chair has been emailed an invite to review and approve of the nomination. Your nomination will not be reviewed by the selection committee until this first step happens.
+            <button type="button" class="close" data-dismiss="alert"><i class="fas fa-times"></i></button>
+        </div>
+    <?php } ?>
         <?php
           include '../unitelections-info.php';
           // Create connection
@@ -146,16 +154,112 @@ header("Pragma: no-cache");
                   </div>
                 </div>
 				
+		<?php
+
+                                $tz = 'America/New_York';
+                                $timestamp = time();
+                                $dt = new DateTime("now", new DateTimeZone($tz));
+                                $dt->setTimestamp($timestamp);
+
+                                $date = $dt->format("Y-m-d");
+                                $hour = $dt->format("H");
+                                if ((strtotime($getUnitElections['dateOfElection']) < strtotime($date)) || ($getUnitElections['dateOfElection'] == $date && $hour >= 21)) { ?>
+			<?php
+          $adultNominationQuery = $conn->prepare("SELECT * from adultNominations where unitId = ?");
+          $adultNominationQuery->bind_param("s", $getUnitElections['id']);
+          $adultNominationQuery->execute();
+          $adultNominationQ = $adultNominationQuery->get_result();
+          if ($adultNominationQ->num_rows > 0) {
+                //print election info
+                ?>
+				<!--<div class="collapse" id="online">-->
+                <div class="card mb-3">
+                  <div class="card-body">
+                    <h3 class="card-title">Adult Nominations</h3>
+					  <div class="row">
+						<div class="col-auto">
+						 <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
+							  </div>
+						  </div><br>
+					  <div class="alert alert-danger" role="alert">
+							Please remember the number of adults nominated can be no more than one-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the one-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
+            			</div><br>
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">BSA ID</th>
+                            <th scope="col">Position</th>
+							<th scope="col">Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <?php while ($getAdult = $adultNominationQ->fetch_assoc()){
+                            ?><tr>
+                              <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
+							  <td><?php echo $getAdult['bsa_id']; ?></td>
+                              <td><?php echo $getAdult['position']; ?></td>  
+							  <td>
+								  <?php
+								  if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
+                                  <span class="badge badge-warning">Not Approved - See Email</span>
+								<?php } elseif (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '1')))) { ?>
+								  <span class="badge badge-success">Approved</span>
+                                <?php } elseif (($getAdult['leader_signature'] == '1' && $getAdult['chair_signature'] == '1')) { ?>
+                                  <span class="badge badge-danger">Waiting for Selection Committee</span>
+                                <?php } elseif (($getAdult['leader_signature'] == '1')) { ?>
+                                  <span class="badge badge-danger">Waiting for Unit Chair Approval</span>
+                                <?php } ?>
+							  </td>	  
+                            </tr>
+                          <?php } ?>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+		<!--</div>-->
+                <?php
+              } else {
+            ?>
+            <div class="card mb-3">
+                      <div class="card-body">
+                        <h3 class="card-title">Adult Nominations</h3>
+						  <div class="row">
+						<div class="col-auto">
+						 <a href="../unitleader/add-nomination.php?accessKey=<?php echo $getUnitElections['accessKey']; ?>" class="btn btn-primary" role="button">Submit a New Adult Nomination</a>
+							  </div>
+						  </div><br>
+                        <div class="alert alert-danger" role="alert">
+							There are no adult nominations yet. Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than one-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the one-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months.
+            			</div>
+                      </div>
+                    </div>
+            <?php
+          }
+        ?>
+		<?php } else { ?>
+                      <div class="card mb-3">
+                      <div class="card-body">
+                        <h3 class="card-title">Adult Nominations</h3>
+                        <div class="alert alert-danger" role="alert">
+							Adult nominations are not available until 9:00 pm EST on the day of the election. Each year, upon holding a troop or team election for youth candidates that results in at least one youth candidate being elected, the unit committee may nominate registered unit adults (age 21 or over) to the lodge adult selection committee. The number of adults nominated can be no more than one-third of the number of youth candidates elected, rounded up where the number of youth candidates is not a multiple of three. In addition to the one-third limit, the unit committee may nominate the currently-serving unit leader (but not assistant leaders), as long as he or she has served as unit leader for at least the previous 12 months. To prepare your nominations in advance, please see this <a href='https://lodge104.net/download/5525/' target="_blank">PDF with the exact same questions</a>.
+            			</div>
+                      </div>
+                    </div>
+                                <?php } ?>
+				
 				<div class="card mb-3">
                       <div class="card-body">
                         <h3 class="card-title">Eligible Scout Criteria</h3>
                         <div>Youth	membership	qualifications:
                         <ol class="mb-3">
-                          <li>Registered	member	of	the	Boy	Scouts	of America</li>
-                          <li>Hold	the	rank	of	First	Class,	hold	the	Scouts	BSA	First	Class	rank,	the	Venturing	Discovery	Award,	or	the	Sea	Scout	Ordinary	rank	or	higher</li>
+                          <li>Registered	member	of	the	Boy	Scouts	of America under the age of 21.</li>
+                          <li>Hold	the	rank	of	First	Class,	hold	the	Scouts	BSA	First	Class	rank,	the	Venturing	Discovery	Award,	or	the	Sea	Scout	Ordinary	rank	or	higher.</li>
                           <li>In	the	past	two	years,	have	completed	fifteen	(15)	days	and	nights	of	camping	under	the	auspices	of	the	Boy	Scouts	of	America.		The	fifteen	days	and	nights	of	camping	must	include	one	long-term	camp	of	six	days	and	five	nights,	and	the	balance	of	the	camping	must	be	short-term	(1,	2,	or	3	night)	camping	trips.</li>
                           <li>Scoutmaster	approval</li>
-						  <li><span class="badge badge-danger">COVID-19</span> Virtual camping can now count towards qualifications. Please see the policy exception <a href='https://lodge104.net/coronavirus/#April29'>here</a></li>
+						  <li><span class="badge badge-danger">COVID-19</span> Virtual camping can now count towards qualifications. Please see the policy exception <a href='https://lodge104.net/coronavirus/#April29'>here</a>.</li>
                         </ol></div>
                       </div>
                     </div>
@@ -238,7 +342,7 @@ header("Pragma: no-cache");
                                   <input id="email[<?php echo $counterEligibleScouts; ?>]" name="email[<?php echo $counterEligibleScouts; ?>]" type="email" class="form-control" placeholder="Email" value="<?php echo $eligibleScout['email']; ?>" required>
                                 </div>
                                 <div class="form-group">
-                                  <input id="phone[<?php echo $counterEligibleScouts; ?>]" name="phone[<?php echo $counterEligibleScouts; ?>]" type="text" class="form-control" placeholder="Phone" value="<?php echo $eligibleScout['phone']; ?>" required>
+                                  <input id="phone[<?php echo $counterEligibleScouts; ?>]" name="phone[<?php echo $counterEligibleScouts; ?>]" type="tel" class="form-control" placeholder="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" value="<?php echo $eligibleScout['phone']; ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -246,7 +350,7 @@ header("Pragma: no-cache");
                             $counterEligibleScouts++;
                           }
                         } else {
-                          while ($counterEligibleScouts < 2) {
+                          while ($counterEligibleScouts < 1) {
                             if ($counterEligibleScouts > 0) { ?>
                               <hr></hr>
                             <?php } ?>
@@ -311,7 +415,7 @@ header("Pragma: no-cache");
                                   <input id="email[<?php echo $counterEligibleScouts; ?>]" name="email[<?php echo $counterEligibleScouts; ?>]" type="email" class="form-control" placeholder="Email" value="<?php echo $eligibleScout['email']; ?>" required>
                                 </div>
                                 <div class="form-group">
-                                  <input id="phone[<?php echo $counterEligibleScouts; ?>]" name="phone[<?php echo $counterEligibleScouts; ?>]" type="text" class="form-control" placeholder="Phone" value="<?php echo $eligibleScout['phone']; ?>" required>
+                                  <input id="phone[<?php echo $counterEligibleScouts; ?>]" name="phone[<?php echo $counterEligibleScouts; ?>]" type="tel" class="form-control" placeholder="Phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="555-555-5555" value="<?php echo $eligibleScout['phone']; ?>" required>
                                 </div>
                               </div>
                             </div>
@@ -323,6 +427,7 @@ header("Pragma: no-cache");
                       <div>
                         <button type="button" class="btn btn-secondary mb-2" onclick="addScout('eligible-scouts')">Add another</button>
                       </div>
+					<div class="my-2"><small class="text-muted">We suggest saving the page before adding an additional scout. Need one removed? Just use the live help button and we'll remove it.</small></div>
 					<br>
                       <div>
                         <a href="index.php" class="btn btn-outline-secondary">Cancel</a>
@@ -334,7 +439,7 @@ header("Pragma: no-cache");
                           function addScout(divName) {
                               var hr = document.createElement('hr');
                               var formRow = document.createElement('div');
-                              formRow.innerHTML = "<input type='hidden' name='eligibleScoutId["+ counter +"]' value='new'><div class='form-row'>  <div class='col-md-3'><div class='form-group'><label for='firstName["+ counter +"]' class='required'>First Name</label><input type='text' id='firstName["+ counter +"]' name='firstName["+ counter +"]' class='form-control' required></div>  </div>  <div class='col-md-3'><div class='form-group'><label for='lastName["+ counter +"]' class='required'>Last Name</label><input type='text' id='lastName["+ counter +"]' name='lastName["+ counter +"]' class='form-control' required></div>  </div>  <div class='col-md-3'><div class='form-group'>  <label for='dob["+ counter +"]' class='required'>Birthday</label>  <input type='date' id='dob["+ counter +"]' name='dob["+ counter +"]' class='form-control' required></div>  </div>  <div class='col-md-3'><div class='form-group'><label for='bsa_id["+ counter +"]' class='required'>BSA ID</label><input type='text' id='bsa_id["+ counter +"]' name='bsa_id["+ counter +"]' class ='form-control' required></div>  </div></div><div class='form-row'>  <div class='col-md-4'><div class='form-group'>  <label>Address</label>  <input id='address_line1["+ counter +"]' name='address_line1["+ counter +"]' type='text' class='form-control' placeholder='Address' ></div><div class='form-group'>  <input id='address_line2["+ counter +"]' name='address_line2["+ counter +"]' type='text' class='form-control' placeholder='Address Line 2 (optional)'></div>  </div>  <div class='col-md-4'><div class='form-group'>  <label>City, State, Zip</label>  <input id='city["+ counter +"]' name='city["+ counter +"]' type='text' class='form-control' placeholder='City' ></div><div class='form-row'>  <div class='col-md-4'><div class='form-group'>  <input id='state["+ counter +"]' name='state["+ counter +"]' type='text' class='form-control' placeholder='State' ></div>  </div>  <div class='col-md-8'><div class='form-group'>  <input id='zip["+ counter +"]' name='zip["+ counter +"]' type='text' class='form-control' placeholder='Zip' ></div>  </div></div>  </div>  <div class='col-md-4'><div class='form-group'>  <label class='required'>Contact Information</label>  <input id='email["+ counter +"]' name='email["+ counter +"]' type='email' class='form-control' placeholder='Email' required></div><div class='form-group'>  <input id='phone["+ counter +"]' name='phone["+ counter +"]' type='text' class='form-control' placeholder='Phone' required></div></div></div>";
+                              formRow.innerHTML = "<input type='hidden' name='eligibleScoutId["+ counter +"]' value='new'><div class='form-row'>  <div class='col-md-3'><div class='form-group'><label for='firstName["+ counter +"]' class='required'>First Name</label><input type='text' id='firstName["+ counter +"]' name='firstName["+ counter +"]' class='form-control' required></div>  </div>  <div class='col-md-3'><div class='form-group'><label for='lastName["+ counter +"]' class='required'>Last Name</label><input type='text' id='lastName["+ counter +"]' name='lastName["+ counter +"]' class='form-control' required></div>  </div>  <div class='col-md-3'><div class='form-group'>  <label for='dob["+ counter +"]' class='required'>Birthday</label>  <input type='date' id='dob["+ counter +"]' name='dob["+ counter +"]' class='form-control' required></div>  </div>  <div class='col-md-3'><div class='form-group'><label for='bsa_id["+ counter +"]' class='required'>BSA ID</label><input type='text' id='bsa_id["+ counter +"]' name='bsa_id["+ counter +"]' class ='form-control' required></div>  </div></div><div class='form-row'>  <div class='col-md-4'><div class='form-group'>  <label>Address</label>  <input id='address_line1["+ counter +"]' name='address_line1["+ counter +"]' type='text' class='form-control' placeholder='Address' ></div><div class='form-group'>  <input id='address_line2["+ counter +"]' name='address_line2["+ counter +"]' type='text' class='form-control' placeholder='Address Line 2 (optional)'></div>  </div>  <div class='col-md-4'><div class='form-group'>  <label>City, State, Zip</label>  <input id='city["+ counter +"]' name='city["+ counter +"]' type='text' class='form-control' placeholder='City' ></div><div class='form-row'>  <div class='col-md-4'><div class='form-group'>  <input id='state["+ counter +"]' name='state["+ counter +"]' type='text' class='form-control' placeholder='State' ></div>  </div>  <div class='col-md-8'><div class='form-group'>  <input id='zip["+ counter +"]' name='zip["+ counter +"]' type='text' class='form-control' placeholder='Zip' ></div>  </div></div>  </div>  <div class='col-md-4'><div class='form-group'>  <label class='required'>Contact Information</label>  <input id='email["+ counter +"]' name='email["+ counter +"]' type='email' class='form-control' placeholder='Email' required></div><div class='form-group'>  <input id='phone["+ counter +"]' name='phone["+ counter +"]' type='tel' class='form-control' placeholder='Phone' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' title='555-555-5555' required></div></div></div>";
                               document.getElementById(divName).appendChild(hr);
                               document.getElementById(divName).appendChild(formRow);
                               counter++;

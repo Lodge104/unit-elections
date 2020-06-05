@@ -146,7 +146,7 @@ header("Pragma: no-cache");
                             $counterEligibleScouts++;
                           }
                         } else {
-                          while ($counterEligibleScouts < 2) {
+                          while ($counterEligibleScouts < 1) {
                             if ($counterEligibleScouts > 0) { ?>
                               <hr></hr>
                             <?php } ?>
@@ -223,7 +223,7 @@ header("Pragma: no-cache");
                       <div>
                         <button type="button" class="btn btn-secondary mb-2" onclick="addScout('eligible-scouts')">Add another</button>
                       </div>
-						<div class="my-2"><small class="text-muted">We suggest saving the page before adding an additional scout.</small></div>
+						<div class="my-2"><small class="text-muted">We suggest saving the page before adding an additional scout. Need one removed? Just use the live help button and we'll remove it.</small></div>
 						<br>
                       <div>
                         <a href="index.php" class="btn btn-outline-secondary">Cancel</a>
