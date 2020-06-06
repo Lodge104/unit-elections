@@ -1,6 +1,6 @@
 <?php
 $title = "Leadership Election Portal | Occoneechee Lodge - Order of the Arrow, BSA";
-$userrole = "Admin"; // Allow only admins to access this page
+$userrole = "Standard User"; // Allow only admins to access this page
 include "../login/misc/pagehead.php";
 
 include '../unitelections-info.php';
@@ -48,6 +48,10 @@ if ($conn->connect_error) {
                 <h2>Review Adult Nominations</h2>
             </div>
         </section>
+			<div class="alert alert-danger" role="alert">
+				<h3>Warning</h3>
+				 	<p>These nominations are read-only. Nominations are sent directly from the unit to the Lodge Selection Committee.</p>
+			 </div>
 
 		  <?php
           $adultNominationQuery = $conn->prepare("SELECT * from adultNominations");
@@ -68,7 +72,7 @@ if ($conn->connect_error) {
                             <th scope="col">Name</th>
                             <th scope="col">BSA ID</th>
                             <th scope="col">Position</th>
-							<th scope="col">Review and Approve</th>
+							<th scope="col">Review</th>
 							<th scope="col">Status</th>
                           </tr>
                         </thead>
@@ -91,16 +95,7 @@ if ($conn->connect_error) {
                               <td><?php echo $getAdult['firstName'] . " " . $getAdult['lastName']; ?></td>
 							  <td><?php echo $getAdult['bsa_id']; ?></td>
                               <td><?php echo $getAdult['position']; ?></td>
-                              <td><?php
-									if (($getAdult['advisor_signature'] == '1')) { ?>
-								  <a href="../export-adult/approve-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review Again</a>
-								  <?php } elseif (($getAdult['advisor_signature'] == '2')) { ?>
-								  <a href="../export-adult/approve-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review Again</a>
-								  <?php } elseif (($getAdult['chair_signature'] == '1')) { ?>
-								  <a href="../export-adult/approve-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review and Approve</a>
-								  <? } else { ?>
-								  <span class="text-muted">Not Ready</span>
-						  		  <?php } ?>	  
+							  <td><a href="../chapter/review-nomination.php?accessKey=<?php echo $getAdult['accessKey']; ?>" class="btn btn-primary" role="button">Review Nomination</a></td>	  
 							  <td>
 								  <?php
 								  if (($getAdult['leader_signature'] == '1' && (($getAdult['chair_signature'] == '1') && ($getAdult['advisor_signature'] == '2')))) { ?>
